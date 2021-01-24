@@ -1,0 +1,22 @@
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: eks-argus
+  region: us-east-2
+  version: "1.17"
+
+availabilityZones: ["us-east-2a", "us-east-2b", "us-east-2c"]
+
+managedNodeGroups:
+- name: nodegroup
+  instanceTypes : ["t2.micro","t3.micro"]
+  desiredCapacity: 3
+  ssh:
+    allow: true
+    publicKeyName: ekskey_argus_mac
+
+
+secretsEncryption:
+  keyARN: arn:aws:kms:us-east-2:469621685690:key/9cc55771-7923-4bd5-ab25-2ef9117ab5d8
